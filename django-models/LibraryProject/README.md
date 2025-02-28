@@ -1,0 +1,1 @@
+First self django project 
