@@ -17,9 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from relationship_app.views import book_list, LibraryDetailView
+from django.contrib.auth import views as auth_views
+from relationship_app.views import register
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('books/', book_list, name='book-list'),
     path('library/<int:pk>/', LibraryDetailView.as_view(), name='library-detail'),
+    path("login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"),
+    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path("register/", register, name="register"),
 ]
