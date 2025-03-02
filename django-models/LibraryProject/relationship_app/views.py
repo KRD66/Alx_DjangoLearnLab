@@ -34,7 +34,7 @@ def register(request):
             messages.error(request, 'Registration failed. Please correct the errors below.')
     else:
         form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, "relationship_app/register.html", {"form": form})
 
 # User Login View
 def user_login(request):
