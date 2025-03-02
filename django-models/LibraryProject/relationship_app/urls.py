@@ -1,5 +1,5 @@
 from django.contrib import admin
-from relationship_app import views
+from . import views
 
 # relationship_app/urls.py
 from django.urls import path
