@@ -1,10 +1,10 @@
-
+# relationship_app/urls.py
 from django.urls import path
-from django.contrib.auth import views as auth_views
-from .views import register
+from . import views  # Import the views module
 
 urlpatterns = [
-    path("login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"),
-    path("logout/", auth_views.LogoutView.as_view(template_name="logout.html"), name="logout"),
-    path("register/", register, name="register"),
+    # Authentication URLs
+    path('register/', views.register, name='register'),  # URL for user registration
+    path('login/', views.user_login, name='login'),      # URL for user login
+    path('logout/', views.user_logout, name='logout'),   # URL for user logout
 ]
