@@ -1,6 +1,7 @@
 
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
+
 urlpatterns = [
     # Authentication URLs
     path('register/', views.register, name='register'),  # URL for user registration
