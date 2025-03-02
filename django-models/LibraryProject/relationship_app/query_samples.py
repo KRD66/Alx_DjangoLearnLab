@@ -1,6 +1,5 @@
 # relationship_app/query_samples.py
 import os
-import sys
 import django
 
 # Set up Django environment
