@@ -68,7 +68,7 @@ def user_login(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-# User Logout View
+# User Logout View 
 def user_logout(request):
     logout(request)
     messages.success(request, 'You have been logged out.')
