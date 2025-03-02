@@ -12,27 +12,15 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 
 
-def list_books(request):
-    books = Book.objects.all()  # Retrieve all books from the database
-    return render(request, 'list_books.html', {'books': books})
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'relationship_app/list_books.html', {'books': books})
 
 
 class LibraryDetailView(DetailView):
     model = Library
-    template_name = 'library_detail.html'
+    template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
-    
-    # relationship_app/views.py
-
-
-def list_books(request):
-    books = Book.objects.all()  # Retrieve all books from the database
-    response_text = "Books Available:\n\n"
-    
-    for book in books:
-        response_text += f"- {book.title} by {book.author.name}\n"
-    
-    return HttpResponse(response_text, content_type="text/plain")
 
 # User Registration View
 def register(request):
