@@ -1,41 +1,48 @@
+# relationship_app/query_samples.py
 import os
 import django
 
-# Setup Django environment
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_models.settings")
+# Set up Django environment
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LibraryProject.settings')  # Use your project name
 django.setup()
 
 from relationship_app.models import Author, Book, Library, Librarian
 
-# 1️⃣ Query all books by a specific author
-def get_books_by_author(author_name):
-    author = Author.objects.get(name=author_name)
-    return Book.objects.filter(author=author)
+def query_all_books_by_author(author_name):
+    """Query all books by a specific author."""
+    try:
+        author = Author.objects.get(name=author_name)
+        books = author.books.all()
+        print(f"Books by {author_name}:")
+        for book in books:
+            print(f"- {book.title}")
+    except Author.DoesNotExist:
+        print(f"Author '{author_name}' not found.")
 
-# 2️⃣ List all books in a library
-def get_books_in_library(library_name):
-    library = Library.objects.get(name=library_name)
-    return library.books.all()
+def list_all_books_in_library(library_name):
+    """List all books in a specific library."""
+    try:
+        library = Library.objects.get(name=library_name)
+        books = library.books.all()
+        print(f"Books in {library_name}:")
+        for book in books:
+            print(f"- {book.title}")
+    except Library.DoesNotExist:
+        print(f"Library '{library_name}' not found.")
 
-# 3️⃣ Retrieve the librarian for a library
-def get_librarian_of_library(library_name):
-    library = Library.objects.get(name=library_name)
-    return library.librarian
+def retrieve_librarian_for_library(library_name):
+    """Retrieve the librarian for a specific library."""
+    try:
+        library = Library.objects.get(name=library_name)
+        librarian = library.librarian
+        print(f"Librarian for {library_name}: {librarian.name}")
+    except Library.DoesNotExist:
+        print(f"Library '{library_name}' not found.")
+    except Librarian.DoesNotExist:
+        print(f"No librarian found for {library_name}.")
 
-# Sample Data Insertion (Run this once)
-def create_sample_data():
-    author = Author.objects.create(name="J.K. Rowling")
-    book1 = Book.objects.create(title="Harry Potter and the Sorcerer's Stone", author=author)
-    book2 = Book.objects.create(title="Harry Potter and the Chamber of Secrets", author=author)
-
-    library = Library.objects.create(name="Central Library")
-    library.books.add(book1, book2)
-
-    librarian = Librarian.objects.create(name="John Doe", library=library)
-
+# Example usage
 if __name__ == "__main__":
-    create_sample_data()
-
-    print("Books by J.K. Rowling:", list(get_books_by_author("J.K. Rowling")))
-    print("Books in Central Library:", list(get_books_in_library("Central Library")))
-    print("Librarian of Central Library:", get_librarian_of_library("Central Library"))
+    query_all_books_by_author("J.K. Rowling")
+    list_all_books_in_library("Central Library")
+    retrieve_librarian_for_library("Central Library")
