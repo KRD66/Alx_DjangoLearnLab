@@ -6,6 +6,7 @@ from django.views.generic import DetailView
 from .models import Library
 from django.http import HttpResponse
 
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
@@ -68,7 +69,7 @@ def user_login(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-# User Logout View 
+# User Logout View
 def user_logout(request):
     logout(request)
     messages.success(request, 'You have been logged out.')
