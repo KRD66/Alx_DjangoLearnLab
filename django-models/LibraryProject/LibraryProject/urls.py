@@ -15,16 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from relationship_app.views import book_list, LibraryDetailView
 from django.contrib.auth import views as auth_views
-from relationship_app.views import register
 
+# relationship_app/urls.py
+from django.urls import path
+from relationship_app.views import list_books, LibraryDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('books/', book_list, name='book-list'),
-    path('library/<int:pk>/', LibraryDetailView.as_view(), name='library-detail'),
+    path('books/', list_books, name='list_books'),  # URL for function-based view
+    path('library/<int:pk>/', LibraryDetailView.as_view(), name='library_detail'),  # URL for class-based view
     path("login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"),
     path("logout/", auth_views.LogoutView.as_view(template_name="logout.html"), name="logout"),
 ]
