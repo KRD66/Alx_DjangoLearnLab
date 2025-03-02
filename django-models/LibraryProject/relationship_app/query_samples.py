@@ -3,7 +3,7 @@ import os
 import django
 
 # Set up Django environment
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LibraryProject.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LibraryProject.settings')  # Use your project name
 django.setup()
 
 from relationship_app.models import Author, Book, Library, Librarian
@@ -33,10 +33,8 @@ def list_all_books_in_library(library_name):
 def retrieve_librarian_for_library(library_name):
     """Retrieve the librarian for a specific library."""
     try:
-        # Get the library object
         library = Library.objects.get(name=library_name)
-        # Use the related_name 'librarian' to retrieve the associated librarian
-        librarian = Librarian.objects.get(library=library)
+        librarian = library.librarian
         print(f"Librarian for {library_name}: {librarian.name}")
     except Library.DoesNotExist:
         print(f"Library '{library_name}' not found.")
