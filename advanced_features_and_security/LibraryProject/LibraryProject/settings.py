@@ -137,3 +137,4 @@ INSTALLED_APPS = [
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login/"
 AUTH_USER_MODEL = 'bookshelf_app.CustomUser'
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
