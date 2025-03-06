@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
 from .forms import BookForm 
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -17,3 +19,9 @@ def edit_book(request, book_id):
         form = BookForm(instance=book)
 
     return render(request, "bookshelf/edit_book.html", {"form": form})
+
+@csrf_exempt
+def api_view(request):
+    if request.method == "POST":
+        return JsonResponse({"message": "Success"})
+    return JsonResponse({"error": "Invalid request"}, status=400)

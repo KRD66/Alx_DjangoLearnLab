@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3_%ay(j+wfba4pquudjdo@#i#(@^&$#up#trlc9e1be$e982xv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -138,3 +138,12 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login/"
 AUTH_USER_MODEL = 'bookshelf_app.CustomUser'
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
+
+SECURE_BROWSER_XSS_FILTER = True  # Enables the X-XSS-Protection header
+X_FRAME_OPTIONS = "DENY"  # Prevents clickjacking attacks
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents MIME sniffingCSRF_COOKIE_SECURE = True  # CSRF tokens will only be sent over HTTPS
+SESSION_COOKIE_SECURE = True  # User session cookies will only be sent over HTTPSCSRF_COOKIE_SECURE = True  # CSRF tokens will only be sent over HTTPS
+SESSION_COOKIE_SECURE = True  # User session cookies will only be sent over HTTPS
+SECURE_HSTS_SECONDS = 31536000  # Forces HTTPS for one year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to subdomains
+SECURE_HSTS_PRELOAD = True  # Allows site to be preloaded in browsers' HSTS lists

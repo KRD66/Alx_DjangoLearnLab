@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Example</title>
+</head>
+<body>
+    <h1>Submit a New Book</h1>
+
+    <form method="POST" action="{% url 'add_book' %}">
+        {% csrf_token %}
+        
+        <label for="title">Book Title:</label>
+        <input type="text" name="title" required>
+
+        <label for="author">Author:</label>
+        <input type="text" name="author" required>
+
+        <button type="submit">Add Book</button>
+    </form>
+</body>
+</html>
