@@ -3,6 +3,7 @@ from .models import Book
 from .forms import BookForm 
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from .forms import ExampleForm
 
 # Create your views here.
 
@@ -25,3 +26,8 @@ def api_view(request):
     if request.method == "POST":
         return JsonResponse({"message": "Success"})
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+def example_form_view(request):
+    form = ExampleForm()
+    return render(request, 'bookshelf/form_example.html', {'form': form})
