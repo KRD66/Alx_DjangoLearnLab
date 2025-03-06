@@ -152,3 +152,5 @@ SECURE_HSTS_PRELOAD = True  # Allows site to be preloaded in browsers' HSTS list
 SECURE_SSL_REDIRECT = True  # Redirect HTTP to HTTPS
 # Secure Cookies
 CSRF_COOKIE_SECURE = True  # CSRF token only sent over HTTPS  # Session cookies only sent over HTTPS
+# Secure Proxy SSL Header
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
