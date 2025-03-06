@@ -147,3 +147,8 @@ SESSION_COOKIE_SECURE = True  # User session cookies will only be sent over HTTP
 SECURE_HSTS_SECONDS = 31536000  # Forces HTTPS for one year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to subdomains
 SECURE_HSTS_PRELOAD = True  # Allows site to be preloaded in browsers' HSTS lists
+
+# Enforce HTTPS
+SECURE_SSL_REDIRECT = True  # Redirect HTTP to HTTPS
+# Secure Cookies
+CSRF_COOKIE_SECURE = True  # CSRF token only sent over HTTPS  # Session cookies only sent over HTTPS
