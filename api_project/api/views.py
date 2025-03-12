@@ -3,6 +3,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from .serializers import BookSerializer
 from .permissions import IsOwnerOrReadOnly
+from  rest_framework.generics import generics
+
+class BookList (generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
 
 
 class BookViewSet(ModelViewSet):
