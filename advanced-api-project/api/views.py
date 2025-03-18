@@ -1,15 +1,23 @@
 from django.shortcuts import render
-
 from rest_framework import generics
 from .models import Book
 from .serializers import BookSerializer
 
-# List all books or create a new book
-class BookListCreateView(generics.ListCreateAPIView):
+class BookListView(generics.ListAPIView):  # GET all books
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
-# Retrieve, update, or delete a specific book by ID
-class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
+class BookCreateView(generics.CreateAPIView):  # POST a new book
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class BookDetailView(generics.RetrieveAPIView):  # GET a single book by ID
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+class BookUpdateView(generics.UpdateAPIView):  # PUT/PATCH an existing book
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class BookDeleteView(generics.DestroyAPIView):  # DELETE a book
     queryset = Book.objects.all()
     serializer_class = BookSerializer
