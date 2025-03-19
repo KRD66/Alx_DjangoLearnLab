@@ -14,9 +14,6 @@ urlpatterns = [
     # Route for the BookList view (ListAPIView)
     path('books/', BookList.as_view(), name='book-list'),
     
-     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # ✅ Include API app's URLs
-
     # Include the router URLs for BookViewSet (all CRUD operations)
     path('', include(router.urls)),  # This includes all routes registered with the router
     path('api-token-auth/', ObtainAuthToken.as_view(), name='api_token_auth'),  # Token generation endpoint
