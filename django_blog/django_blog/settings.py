@@ -97,13 +97,19 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES =   DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'alx_book_store',  # Replace with your actual database name
+        'USER': 'root',  # Replace with your MySQL username
+        'PASSWORD': 'Korede123@66',  # Replace with your MySQL password
+        'HOST': 'localhost',  # Use the appropriate host, default is 'localhost'
+        'PORT': '3306',  # MySQL default port is 3306
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
