@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'users'
+    
 ]
 
 MIDDLEWARE = [
@@ -97,14 +99,6 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-       
-      
-        'USER': 'root',  # Replace with your MySQL username
-       
-        
-        'PORT': '3306',  # MySQL default port is 3306
-       
-       
         'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / "db.sqlite3",
@@ -159,3 +153,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+LOGIN_REDIRECT_URL = 'profile'  # Redirect after login
+LOGOUT_REDIRECT_URL = 'login'  # Redirect after logout
