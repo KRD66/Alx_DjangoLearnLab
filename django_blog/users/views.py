@@ -22,3 +22,5 @@ def logout_view(request):
     logout(request)
     return redirect("login")
 
+from django.shortcuts import render
+from .forms import CustomUserCreationForm
