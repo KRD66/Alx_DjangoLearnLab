@@ -2,11 +2,10 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # Ensure BASE_DIR is properly defined
-
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # Ensuring correct format
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # Ensure this line is present
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Add your template directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,18 +97,14 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'alx_book_store',  # Replace with your actual database name
+       
         'USER': 'root',  # Replace with your MySQL username
-        'PASSWORD': 'Korede123@66',  # Replace with your MySQL password
-        'HOST': 'localhost',  # Use the appropriate host, default is 'localhost'
+       
+        
         'PORT': '3306',  # MySQL default port is 3306
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-        },
+       
     }
-}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -152,7 +147,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# In settings.py
-STATIC_URL = '/static/'
 
