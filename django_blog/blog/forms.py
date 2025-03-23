@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Post, Comment
        
 from taggit.forms import TagField
-from taggit_labels.widgets import LabelWidget
+from taggit_labels.widgets import LabelWidget ,TagWidget
 from .models import Post
 
 
@@ -25,6 +25,7 @@ class UserUpdateForm(forms.ModelForm):
         
 class PostForm(forms.ModelForm):
     tags = TagField(widget=LabelWidget())
+    tags = TagField(widget=TagWidget())
 
     class Meta:
         model = Post
@@ -38,3 +39,4 @@ class CommentForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'rows': 2, 'cols': 20, 'placeholder': 'Leave a comment...'}),
         }       
         
+    
