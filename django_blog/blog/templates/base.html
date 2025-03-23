@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Django Blog{% endblock %}</title>
@@ -10,14 +12,18 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' %}">Profile</a></li>
-                <li><a href="{% url 'posts' %}">Blog Posts</a></li>
-           <li><a href="{% url 'logout' %}">Logout</a></li>
-        {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
+                
+                <li><a href="{% url 'blog:home' %}">Home</a></li>
+                <li><a href="{% url 'blog:posts' %}">Blog Posts</a></li>
+                <li><a href="{% url 'blog:login' %}">Login</a></li>
+                <li><a href="{% url 'blog:register' %}">Register</a></li>
+                <li><a href="{% url 'blog:profile' %}">Profile</a></li>
+                <li><a href="{% url 'blog:post_create' %}">Create Post</a></li>
+                <li><a href="{% url 'blog:logout' %}">Logout</a></li>
+                <form method="GET" action="{% url 'blog:search_posts' %}" style="display: inline-block;;">
+                    <input type="search" name="q" placeholder="Search posts..." required>
+                    <button type="submit">Search</button>
+                </form>
             </ul>
         </nav>
     </header>
@@ -25,6 +31,7 @@
     <div class="content">
         {% block content %}
         <!-- Page-specific content goes here -->
+       <h2>Welcome to Django Blog</h2>
         {% endblock %}
     </div>
 
