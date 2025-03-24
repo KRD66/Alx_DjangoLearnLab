@@ -8,13 +8,22 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'bio', 'profile_picture')
-        extra_kwargs = {'password': {'write_only': True}}  # Password should not be read
+        extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        Token.objects.create(user=user)  # Automatically create a token for new users
+        # Create the user properly using create_user()
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data.get('email', ''),
+            password=validated_data['password']
+        )
+        
+        # Add additional fields if they exist
+        if 'bio' in validated_data:
+            user.bio = validated_data['bio']
+        if 'profile_picture' in validated_data:
+            user.profile_picture = validated_data['profile_picture']
+        
+        user.save()
+        Token.objects.create(user=user)  # Create auth token
         return user
-
-class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
-    password = serializers.CharField(write_only=True)
