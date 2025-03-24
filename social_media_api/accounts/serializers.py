@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 
 User = get_user_model().objects.create_user
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.CharField):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'bio', 'profile_picture')
@@ -24,3 +24,6 @@ class UserSerializer(serializers.ModelSerializer):
         if 'profile_picture' in validated_data:
             user.profile_picture = validated_data['profile_picture']
         
+        user.save()
+        Token.objects.create(user=user)  # Create auth token
+        return user
