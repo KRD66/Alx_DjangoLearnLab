@@ -32,17 +32,3 @@ class LoginSerializer(serializers.Serializer):
         return data
 
 
-
-class LoginSerializer(serializers.Serializer):
-    """Serializer for user login and authentication"""
-    
-    username = serializers.CharField()
-    password = serializers.CharField(write_only=True)
-
-    def validate(self, data):
-        user = authenticate(username=data['username'], password=data['password'])
-        if not user:
-            raise serializers.ValidationError("Invalid username or password")
-        
-        token, _ = Token.objects.get_or_create(user=user)  # Ensure token is created
-        return {'user': user, 'token': token.key}
