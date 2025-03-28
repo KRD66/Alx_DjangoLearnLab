@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
     'rest_framework.authtoken',
     'accounts',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -125,7 +125,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.CustomUser'  # Tell Django to use this model instead of default User
+AUTH_USER_MODEL = 'accounts.CustomUser' # Tell Django to use this model instead of default User
 
 # DRF Authentication Settings
 REST_FRAMEWORK = {
