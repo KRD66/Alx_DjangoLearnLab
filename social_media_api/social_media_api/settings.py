@@ -15,7 +15,7 @@ from pathlib import Path
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  False
+"DEBUG =  False"
 
   # Load environment variables from a .env file
 
