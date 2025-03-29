@@ -2,7 +2,7 @@ from rest_framework import generics, permissions, status,viewsets
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, login , get_user_model
-from .serializers import UserSerializer, LoginSerializer, User
+from .serializers import UserSerializer, LoginSerializer, CustomUser
 from rest_framework.decorators import action
 
 
@@ -38,7 +38,7 @@ class LoginView(generics.GenericAPIView):
         
 class UserViewSet(viewsets.ModelViewSet):
     """ViewSet for user actions including follow/unfollow"""
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
