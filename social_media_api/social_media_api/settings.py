@@ -15,7 +15,7 @@ from pathlib import Path
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-"DEBUG =  False"
+DEBUG =  os.getenv("DEBUG", "False") == "True" 
 
   # Load environment variables from a .env file
 
