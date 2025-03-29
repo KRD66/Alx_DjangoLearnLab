@@ -56,17 +56,19 @@ class LikePostView(APIView):
     """View for liking a post"""
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, post_id):
+    def post(self, request, pk):
         """Handles liking a post"""
-        post = get_object_or_404(Post, id=post_id)
+        
+        post = generics.get_object_or_404(Post, pk=pk)
         user = request.user
-
-        # Check if user already liked the post
-        if Like.objects.filter(user=user, post=post).exists():
+        
+        # Get or create a like object to prevent duplicate likes
+        like, created = Like.objects.get_or_create(user=user, post=post)
+        
+        
+        if not created:
             return Response({"detail": "You have already liked this post."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Create a new like
-        like = Like.objects.create(user=user, post=post)
 
         # Create a notification for the post author (if not the same user)
         if post.author != user:
@@ -79,6 +81,7 @@ class LikePostView(APIView):
             )
 
         return Response({"detail": "Post liked successfully"}, status=status.HTTP_201_CREATED)
+    
 
 
 class UnlikePostView(APIView):
