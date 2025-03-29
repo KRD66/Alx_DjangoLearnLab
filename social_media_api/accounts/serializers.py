@@ -5,10 +5,22 @@ from rest_framework.authtoken.models import Token
 
 User = get_user_model().objects.create_user
 class UserSerializer(serializers.ModelSerializer):
+    followers_count = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = ['id', 'username', 'email']
         extra_kwargs = {'password': {'write_only': True}}
+        
+        
+        
+    def get_followers_count(self, obj):
+        return obj.followers.count()
+
+    def get_following_count(self, obj):
+        return obj.following.count()
+
 
 
 def create(self, validated_data):
@@ -42,5 +54,4 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid username or password")
         Token, _ = Token.objects.get_or_create(user=user)  # Ensure token is created
         return data
-
 
