@@ -14,6 +14,9 @@ import os
 from pathlib import Path
 
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG =  False
+
   # Load environment variables from a .env file
 
 
@@ -27,8 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-uwa53o)&b2jw(kj9!7#nn+7o-h9n8nvupoh%de+zf)jzxm%0p7'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  False
+
 
 ALLOWED_HOSTS = ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
