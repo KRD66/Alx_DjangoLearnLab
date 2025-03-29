@@ -11,8 +11,8 @@ router.register(r'users', UserViewSet)  # Handles user-related operations
 urlpatterns =  [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('users/<int:pk>/follow/', UserViewSet.as_view({'post': 'follow'}), name='follow-user'),
-    path('users/<int:pk>/unfollow/', UserViewSet.as_view({'post': 'unfollow'}), name='unfollow-user'),
+    path('unfollow/<int:user_id>/', UserViewSet.as_view({'post': 'unfollow'}), name='unfollow-user'),
+    path('follow/<int:user_id>/', UserViewSet.as_view({'post': 'follow'}), name='follow-user'),
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('api/', include('posts.urls'))
